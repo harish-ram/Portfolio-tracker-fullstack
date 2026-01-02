@@ -314,4 +314,42 @@ Contributions are welcome! Please ensure code follows project conventions and in
 
 ---
 
+## 🚢 Deployment to Railway (Railway.app) 🔧
+
+Follow these steps to deploy the full-stack app to Railway:
+
+1. Create a Railway project and connect your GitHub repo (or use Railway CLI: `railway login` + `railway init`).
+2. For each service use the provided Dockerfiles:
+   - **Frontend** (`/frontend/Dockerfile`): builds the Vite app and serves the `dist` folder on `$PORT`.
+   - **Backend** (`/portfolio-manager/Dockerfile`): builds with Maven and runs `java -Dserver.port=$PORT -jar app.jar`.
+3. Configure environment variables in Railway:
+   - `VITE_API_BASE_URL` => `https://<your-backend-url>/api` (frontend).
+   - Add any OAuth or secret keys (e.g., `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`) used by the backend.
+4. (Optional) Use Railway's GitHub integration for automatic deploys on push to `main`.
+5. Verify after deployment:
+   - Frontend loads at `https://<frontend-url>` and calls backend at `VITE_API_BASE_URL`.
+   - Backend endpoints are reachable at `https://<backend-url>/api`.
+
+**Tips:**
+- Railway sets `PORT` automatically — both Dockerfiles and start commands reference `$PORT`.
+- Keep secrets in Railway environment variables, not in the repo.
+
+### CI/CD with GitHub Actions (optional) ⚙️
+
+A GitHub Actions workflow is included at `.github/workflows/deploy-railway.yml`. It will:
+
+- Run on push to `main` (or when manually triggered).
+- Build and test the backend and frontend.
+- If a `RAILWAY_TOKEN` secret is present, it will log in to Railway and deploy the `portfolio-manager` and `frontend` services.
+
+Required GitHub repository secrets for automatic deploys:
+
+- `RAILWAY_TOKEN` — your Railway API token (store securely in GitHub Secrets).
+
+Notes & tips:
+- You can also connect your repo directly in the Railway UI and enable automatic deploys without a token.
+- If you prefer manual control, leave `RAILWAY_TOKEN` empty and the workflow will run builds/tests but skip deploy steps.
+
+---
+
 **Status:** ✅ Production Ready | **Last Updated:** December 2024

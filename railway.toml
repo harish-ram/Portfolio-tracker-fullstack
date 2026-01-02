@@ -1,0 +1,15 @@
+project = "portfolio-manager-deploy"
+
+[[service]]
+  name = "frontend"
+  path = "frontend"
+  docker = true
+  build = "docker build -t frontend ./frontend"
+  start = "sh -c 'serve -s dist -l $PORT'"
+
+[[service]]
+  name = "portfolio-manager"
+  path = "portfolio-manager"
+  docker = true
+  build = "docker build -t portfolio-manager ./portfolio-manager"
+  start = "sh -c 'java -Dserver.port=$PORT -jar app.jar'"
