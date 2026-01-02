@@ -4,6 +4,9 @@
 /target/
 /data/
 /log/
+/src/main/resources/static/
+/node/
+/node_modules/
 
 # Properties files with sensitive information
 src/main/resources/application.properties

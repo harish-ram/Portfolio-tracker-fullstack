@@ -9,7 +9,7 @@ import org.ozsoft.portfoliomanager.dto.StockPriceDTO;
 import org.ozsoft.portfoliomanager.service.StockPriceService;
 
 @RestController
-@RequestMapping("/search")
+@RequestMapping("/api/search")
 public class StockSearchController {
 
     @Autowired

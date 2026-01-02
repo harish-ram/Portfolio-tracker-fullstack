@@ -22,7 +22,7 @@ import org.ozsoft.portfoliomanager.service.StockPriceService;
 import org.ozsoft.portfoliomanager.util.SecurityUtils;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionController {
 
     private final TransactionService transactionService;

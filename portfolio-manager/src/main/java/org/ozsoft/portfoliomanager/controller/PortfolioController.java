@@ -23,7 +23,7 @@ import org.ozsoft.portfoliomanager.service.PortfolioService;
 import org.ozsoft.portfoliomanager.util.SecurityUtils;
 
 @RestController
-@RequestMapping("/portfolio")
+@RequestMapping("/api/portfolio")
 public class PortfolioController {
 
     private final Configuration config;

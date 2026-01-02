@@ -55,12 +55,30 @@ source ~/.bashrc
 
 ### 3. Build and Run
 ```bash
-# Build the project
-mvn clean install
+# Build the project (includes frontend automatically)
+mvn clean package
 
 # Run the application
-mvn spring-boot:run
+java -jar target/portfolio-manager.jar
 ```
+
+## Production Deployment (Railway)
+
+This project is configured for one-click deployment to Railway. The `nixpacks.toml` at the root handles the unified build.
+
+### Required Variables
+Set these in your Railway dashboard:
+- `MARKETSTACK_API_KEY`
+- `GOOGLE_CLIENT_ID`
+- `GOOGLE_CLIENT_SECRET`
+
+### Optional Database (PostgreSQL)
+If using a Railway PostgreSQL service, add:
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+- `SPRING_JPA_PLATFORM=org.hibernate.dialect.PostgreSQLDialect`
+- `SPRING_DATASOURCE_DRIVER=org.postgresql.Driver`
 
 ## Obtaining Credentials
 
