@@ -1,5 +1,0 @@
-target
-.dockerignore
-.git
-.env
-*.log
